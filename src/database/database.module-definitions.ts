@@ -1,0 +1,1 @@
+export const CONNECTION_POOL_TOKEN = Symbol('CONNECTION_POOL');

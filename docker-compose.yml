@@ -1,0 +1,35 @@
+version: '3.8'
+services:
+  app:
+    restart: unless-stopped
+    build: .
+    container_name: nest-app
+    depends_on:
+      - postgres
+    environment:
+      - PG_DB=$PG_DB
+      - PG_USER=$PG_USER
+      - PG_PASSWORD=$PG_PASSWORD
+      - PG_PORT=$PG_PORT
+      - PG_HOST=$PG_HOST
+      - STAGE=$STAGE
+      - APP_PORT=$APP_PORT
+    ports:
+      - '${APP_PORT}:${APP_PORT}'
+    command: node dist/main.js
+  postgres:
+    build: 
+      dockerfile: postgres:15.3-alpine3.18
+    container_name: postgres
+    environment:
+      POSTGRES_DB: ${PG_DB}
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+    volumes:
+      - db:/var/lib/postgresql/data
+    ports:
+      - '${PG_PORT}:${PG_PORT}'
+    restart: unless-stopped
+volumes:
+  db:
+    external: true
