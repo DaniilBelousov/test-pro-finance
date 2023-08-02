@@ -2,7 +2,7 @@ import { Module, Global } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { Pool } from 'pg';
 import { DatabaseService } from './database.service';
-import { CONNECTION_POOL_TOKEN } from './database.module-definitions';
+import { CONNECTION_POOL_TOKEN } from './database.token';
 
 @Global()
 @Module({
