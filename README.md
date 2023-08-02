@@ -18,6 +18,7 @@ Start docker
 ```bash
 $ npm run docker:up
 ```
+3. Create database schema from `db.sql` file
 ## Start
 
 ```bash
